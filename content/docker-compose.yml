@@ -1,0 +1,24 @@
+version: '3'
+services:
+    calibre:
+        image: linuxserver/calibre-web
+        user: root
+        ports:
+            - '9342:8083'
+        volumes:
+            - '/changan/docker/config/calibre/:/config'
+            - '/mnt/docker/downloads/calibre-web/:/downloads'
+            - '/mnt/media/Books/:/books'
+        environment:
+            TZ: America/Boise
+    kodi:
+        image: linuxserver/kodi-headless
+        user: root
+        ports:
+            - '9380:8080'
+            - '9390:9090'
+            - '9777:9777/udp'
+        volumes:
+            - '/changan/docker/config/kodi/:/config/.kodi'
+        environment:
+            TZ: America/Boise

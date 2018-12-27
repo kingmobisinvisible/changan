@@ -1,0 +1,23 @@
+version: '3'
+services:
+    mariadb:
+        image: linuxserver/mariadb
+        user: root
+        ports:
+            - '3306:3306'
+        volumes:
+            - '/changan/docker/config/mariadb/:/config'
+        environment:
+            TZ: America/Boise
+            MYSQL_ROOT_PASSWORD: y9E7qdN@TJPy
+            MYSQL_USER: kingmob2323
+            MYSQL_PASSWORD: Reznor6^^
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        user: root
+        ports:
+            - '9350:80'
+        environment:
+            TZ: America/Boise
+            PMA_HOST: mariadb
+            MYSQL_ROOT_PASSWORD: y9E7qdN@TJPy

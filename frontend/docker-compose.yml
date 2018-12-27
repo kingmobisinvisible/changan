@@ -1,0 +1,36 @@
+version: '3'
+services:
+    ddclient:
+        image: linuxserver/ddclient
+        user: root
+        volumes:
+            - '/changan/docker/config/ddclient/:/config'
+        environment:
+            TZ: America/Boise
+    nginx-proxy:
+        image: jwilder/nginx-proxy
+        ports:
+            - "80:80"
+        volumes:
+            - /var/run/docker.sock:/tmp/docker.sock:ro
+        environment:
+            TZ: America/Boise
+    heimdall:
+        image: linuxserver/heimdall
+        user: root
+        ports:
+            - '81:80'
+            - '444:443'
+        volumes:
+            - '/changan/docker/config/heimdall/:/config'
+        environment:
+            TZ: America/Boise
+            VIRTUAL_HOST: www.kingmob.xyz
+            VIRTUAL_PORT: 81
+    wordpress:
+        image: wordpress
+        user: root
+        ports:
+            - '9344:80'
+        environment:
+            TZ: America/Boise

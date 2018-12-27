@@ -1,0 +1,95 @@
+version: '3'
+services:
+# MEDIA AUTOMATION
+    sonarr:
+        image: linuxserver/sonarr
+        user: root
+        ports:
+            - '9310:8989'
+        volumes:
+            - '/changan/docker/config/sonarr/:/config'
+            - '/changan/docker/downloads/:/downloads'
+            - '/mnt/media/TV/:/tv'
+        environment:
+            TZ: America/Boise
+            PUID: 0
+    radarr:
+        image: linuxserver/radarr
+        user: root
+        ports:
+            - '9311:7878'
+        volumes:
+            - '/changan/docker/config/radarr/:/config'
+            - '/changan/docker/downloads/:/downloads'
+            - '/mnt/media/Movies/:/movies'
+        environment:
+            TZ: America/Boise
+            PUID: 0
+    lidarr:
+        image: linuxserver/lidarr
+        user: root
+        ports:
+            - '9312:8686'
+        volumes:
+            - '/changan/docker/config/lidarr/:/config'
+            - '/changan/docker/downloads/:/downloads'
+            - '/mnt/media/Music/:/music'
+        environment:
+            TZ: America/Boise
+            PUID: 0
+    lazylibrarian:
+        image: linuxserver/lazylibrarian
+        user: root
+        ports:
+            - '9313:5299'
+        volumes:
+            - '/changan/docker/config/lazylibrarian/:/config'
+            - '/changan/docker/downloads/:/downloads'
+            - '/mnt/media/Books/:/books'
+            - '/mnt/media/Audiobooks/:/audiobooks'
+        environment:
+            TZ: America/Boise
+            PUID: 0
+# DOWNLOAD CLIENTS
+    nzbget:
+        image: linuxserver/nzbget
+        user: root
+        ports:
+            - '9320:6789'
+        volumes:
+            - '/changan/docker/config/nzbget/:/config'
+            - '/changan/docker/downloads/:/downloads'
+        environment:
+            TZ: America/Boise
+            PUID: 0
+# INDEXERS
+    hydra2:
+        image: linuxserver/hydra2
+        user: root
+        ports:
+            - '9330:5076'
+        volumes:
+            - '/changan/docker/config/hydra2/:/config'
+            - '/changan/docker/downloads/:/downloads'
+        environment:
+            TZ: America/Boise
+    jackett:
+        image: linuxserver/jackett
+        user: root
+        ports:
+            - '9331:9117'
+        volumes:
+            - '/changan/docker/config/jackett/:/config'
+            - '/changan/docker/downloads/:/downloads'
+        environment:
+            TZ: America/Boise
+    jackettP:
+        image: linuxserver/jackett
+        user: root
+        ports:
+            - '9332:9117'
+        volumes:
+            - '/changan/docker/config/jackettp/:/config'
+            - '/changan/docker/downloads/:/downloads'
+        environment:
+            TZ: America/Boise

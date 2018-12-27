@@ -1,0 +1,62 @@
+version: '3'
+services:
+    portainer:
+        image: portainer/portainer
+        ports:
+            - '9300:9000'
+        volumes:
+            - '/var/run/docker.sock:/var/run/docker.sock'
+            - '/changan/docker/config/portainer/:/data'
+        environment:
+            TZ: America/Boise
+    organizr:
+        image: lsiocommunity/organizr
+        user: root
+        ports:
+            - '9301:80'
+        volumes:
+            - '/changan/docker/config/organizr/:/config'
+        environment:
+            TZ: America/Boise
+    organizr2:
+        image: lsiocommunity/organizr
+        user: root
+        ports:
+            - '9302:80'
+        volumes:
+            - '/changan/docker/config/organizr2/:/config'
+        environment:
+            TZ: America/Boise
+    organizr3:
+        image: lsiocommunity/organizr
+        user: root
+        ports:
+            - '9303:80'
+        volumes:
+            - '/changan/docker/config/organizr3/:/config'
+        environment:
+            TZ: America/Boise
+    organizr4:
+        image: lsiocommunity/organizr
+        user: root
+        ports:
+            - '9304:80'
+        volumes:
+            - '/changan/docker/config/organizr4/:/config'
+        environment:
+            TZ: America/Boise
+    organizr5:
+        image: lsiocommunity/organizr
+        user: root
+        ports:
+            - '9305:80'
+        volumes:
+            - '/changan/docker/config/organizr5/:/config'
+        environment:
+            TZ: America/Boise
+    watchtower:
+        image: v2tec/watchtower
+        volumes:
+            - '/var/run/docker.sock:/var/run/docker.sock'
+        environment:
+            TZ: America/Boise
